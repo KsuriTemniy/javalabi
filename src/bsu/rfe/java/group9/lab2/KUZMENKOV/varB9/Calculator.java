@@ -246,25 +246,31 @@ public class Calculator {
     }
 
     private Double calculateFirstFormula(Double x, Double y, Double z) {
-        if (x == 0 || y == 0) {
+        if (x <= 0) { // Проверка на корректность log(x^2)
             return null;
         }
-        return pow(log(pow(1 + x, 2)) + cos(PI * pow(z, 3)), sin(y)) +
-                pow(pow(E, x * x) + cos(pow(E, z)) + sqrt(1 / y), 1 / x);
+
+        double innerSin = Math.sin(y) + Math.pow(Math.E, Math.cos(y)) + Math.pow(z, 2);
+        double fourthRoot = Math.pow(Math.sin(Math.PI * Math.pow(y, 2)) + Math.log(Math.pow(x, 2)), 0.25);
+
+        return Math.sin(innerSin) * fourthRoot;
     }
 
     private Double calculateSecondFormula(Double x, Double y, Double z) {
-        if (y == 0 || x == -1) {
+        if (x <= 0 || y == 0) { // Проверка на корректность ln(x) и деление на y^2
             return null;
         }
 
-        double divider = (log10(pow(z, y)) + pow(cos(pow(x, 1.f / 3.f)), 2));
-        if (divider == 0) {
+        double numerator = Math.atan(Math.pow(x, Math.sqrt(z)));
+        double denominator = Math.pow(y, 2) + z * Math.sin(Math.log(x));
+
+        if (denominator == 0) { // Защита от деления на 0
             return null;
         }
 
-        return y * x * x / divider;
+        return numerator / denominator;
     }
+
 
     private void updateMemoryLabels() {
         memoryTextLabel1.setText(Double.toString(memoryCells[0]));

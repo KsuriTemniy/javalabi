@@ -21,7 +21,6 @@ public class Apple extends Food {
 		calories.put("маленькое", 100);
 		calories.put("среднее", 200);
 		calories.put("большое", 300);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

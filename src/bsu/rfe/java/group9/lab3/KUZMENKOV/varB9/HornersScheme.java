@@ -48,52 +48,6 @@ public class HornersScheme extends JFrame {
         JMenu tableMenu = new JMenu("Таблица");
         menuBar.add(tableMenu);
 
-        Action aboutAction = new AbstractAction("Автор") {
-            public void actionPerformed(ActionEvent event) {
-                JDialog dialog = new JDialog(HornersScheme.this, "Автор", true);
-                dialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                dialog.setSize(360, 360);
-
-                aboutNameTF = new JLabel("Индюков (57459N) Станислав");
-                githubLinkButton = new JButton();
-                aboutPhotoLabel = new JLabel();
-                aboutPhotoLabel.setIcon(getImageFromGithubProfile("https://avatars.githubusercontent.com/u/57952082"));
-
-                githubLinkButton.setText("<HTML><FONT color=\"#000099\"><U>github.com/57459N</U></FONT></HTML>");
-                githubLinkButton.setHorizontalAlignment(SwingConstants.LEFT);
-                githubLinkButton.setBorderPainted(false);
-                githubLinkButton.setOpaque(false);
-                githubLinkButton.setBackground(Color.WHITE);
-                githubLinkButton.setToolTipText("github.com/57459N");
-                githubLinkButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        if (Desktop.isDesktopSupported()) {
-                            try {
-                                Desktop.getDesktop().browse(new URI("https://github.com/57459N"));
-                            } catch (IOException e) { } catch (URISyntaxException ignored) {
-                            }
-                        }
-                    }
-                });
-
-                Box box = Box.createVerticalBox();
-                box.add(aboutPhotoLabel);
-                box.add(aboutNameTF);
-                box.add(githubLinkButton);
-
-                Box hbox = Box.createHorizontalBox();
-                hbox.add(Box.createHorizontalStrut(20));
-                hbox.add(box);
-
-                dialog.getContentPane().add(hbox);
-
-                dialog.setVisible(true);
-            }
-        };
-
-        aboutMenuItem = aboutMenu.add(aboutAction);
-
         Action saveToTextAction = new AbstractAction("Сохранить в текстовый файл") {
             public void actionPerformed(ActionEvent event) {
                 if (fileChooser == null) {

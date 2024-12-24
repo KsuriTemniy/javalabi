@@ -2,6 +2,8 @@
 *.iml
 *.class
 *.log
+*.ipr
+*.iws
 /out/
 build/
 target/

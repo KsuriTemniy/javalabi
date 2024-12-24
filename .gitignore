@@ -1,0 +1,11 @@
+.idea/
+*.iml
+*.class
+*.log
+/out/
+build/
+target/
+.DS_Store
+Thumbs.db
+*.jar
+*.war
